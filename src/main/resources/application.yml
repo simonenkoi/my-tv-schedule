@@ -1,0 +1,16 @@
+server:
+  port: 9090
+
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+        order_inserts: true
+        generate_statistics: true
+
+integration:
+  tvmaze:
+    url: http://api.tvmaze.com/

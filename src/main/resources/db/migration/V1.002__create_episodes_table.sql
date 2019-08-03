@@ -6,9 +6,9 @@ CREATE TABLE episodes (
     number      INT,
     airdate     DATE,
     watched     BOOLEAN NOT NULL DEFAULT FALSE,
-    movie_id    INT,
+    show_id    INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id)
+    FOREIGN KEY (show_id) REFERENCES shows(id)
   );
 
 CREATE UNIQUE INDEX episodes_external_id_uix ON episodes(external_id);

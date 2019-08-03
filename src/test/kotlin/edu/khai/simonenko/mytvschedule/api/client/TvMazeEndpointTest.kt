@@ -6,7 +6,7 @@ import assertk.assertions.isFailure
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotEmpty
 import assertk.assertions.isNotNull
-import edu.khai.simonenko.mytvschedule.api.model.Movie
+import edu.khai.simonenko.mytvschedule.api.model.Show
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,19 +22,19 @@ class TvMazeEndpointTest {
     lateinit var tvMazeClient: TvMazeEndpoint
 
     @Test
-    fun requestShouldReturnCorrectMovie() {
-        val movie: Movie? = tvMazeClient.getMovieById(10L).block()
+    fun requestShouldReturnCorrectShow() {
+        val show: Show? = tvMazeClient.getShowById(10L).block()
 
-        assertThat(movie?.id).isEqualTo(10L)
-        assertThat(movie?.name).isNotNull().isEqualTo("Grimm")
-        assertThat(movie?.image).isNotNull()
-        assertThat(movie?.cast).isNotNull().isNotEmpty()
-        assertThat(movie?.episodes).isNotNull().isNotEmpty()
+        assertThat(show?.id).isEqualTo(10L)
+        assertThat(show?.name).isNotNull().isEqualTo("Grimm")
+        assertThat(show?.image).isNotNull()
+        assertThat(show?.cast).isNotNull().isNotEmpty()
+        assertThat(show?.episodes).isNotNull().isNotEmpty()
     }
 
     @Test
     fun incorrectRequestShouldThrowBusinessException() {
-        assertThat { tvMazeClient.getMovieById(-10).block() }
+        assertThat { tvMazeClient.getShowById(-10).block() }
             .isFailure()
             .isInstanceOf(WebClientResponseException::class)
     }

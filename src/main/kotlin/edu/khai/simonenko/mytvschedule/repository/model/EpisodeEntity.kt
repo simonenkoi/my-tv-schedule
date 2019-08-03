@@ -7,7 +7,6 @@ import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 
@@ -24,7 +23,7 @@ data class EpisodeEntity(
     val airdate: LocalDate? = null,
     val watched: Boolean,
     @ManyToOne(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.LAZY)
-    val movie: MovieEntity? = null
+    val show: ShowEntity? = null
 ) {
     companion object
 }

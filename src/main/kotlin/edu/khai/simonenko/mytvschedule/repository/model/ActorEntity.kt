@@ -4,8 +4,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.Table
 
@@ -19,7 +17,7 @@ data class ActorEntity(
     val name: String? = null,
     val image: String? = null,
     @ManyToMany(mappedBy = "cast")
-    val movies: List<MovieEntity> = emptyList()
+    val shows: List<ShowEntity> = emptyList()
 ) {
     companion object
 }

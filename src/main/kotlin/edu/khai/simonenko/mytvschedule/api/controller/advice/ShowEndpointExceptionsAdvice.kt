@@ -9,11 +9,11 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 
 @ControllerAdvice
-class MovieEndpointExceptionsAdvice : Logging {
+class ShowEndpointExceptionsAdvice : Logging {
 
     @ExceptionHandler(WebClientResponseException::class)
-    fun handleMovieEndpointClientException(ex: WebClientResponseException): ResponseEntity<String> {
-        logger().error("Error from Movie Endpoint - Status {}, Body {}", ex.rawStatusCode, ex.responseBodyAsString, ex)
+    fun handleShowEndpointClientException(ex: WebClientResponseException): ResponseEntity<String> {
+        logger().error("Error from Show Endpoint - Status {}, Body {}", ex.rawStatusCode, ex.responseBodyAsString, ex)
         return ResponseEntity.status(ex.rawStatusCode).body(ex.responseBodyAsString)
     }
 

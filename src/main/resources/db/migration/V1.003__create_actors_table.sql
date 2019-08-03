@@ -6,11 +6,11 @@ CREATE TABLE actors (
     PRIMARY KEY (id)
   );
 
-CREATE TABLE movie_actor(
-    movie_id INT NOT NULL,
+CREATE TABLE show_actor(
+    show_id INT NOT NULL,
     actor_id INT NOT NULL,
-    PRIMARY KEY (movie_id, actor_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    PRIMARY KEY (show_id, actor_id),
+    FOREIGN KEY (show_id) REFERENCES shows(id),
     FOREIGN KEY (actor_id) REFERENCES actors(id)
 );
 

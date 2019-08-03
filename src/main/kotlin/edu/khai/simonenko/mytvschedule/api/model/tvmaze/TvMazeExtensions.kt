@@ -2,9 +2,9 @@ package edu.khai.simonenko.mytvschedule.api.model.tvmaze
 
 import edu.khai.simonenko.mytvschedule.api.model.Actor
 import edu.khai.simonenko.mytvschedule.api.model.Episode
-import edu.khai.simonenko.mytvschedule.api.model.Movie
+import edu.khai.simonenko.mytvschedule.api.model.Show
 
-fun TvMazeShow.toMovie(): Movie = Movie(
+fun TvMazeShow.toShow(): Show = Show(
     id = this.id,
     name = this.name,
     image = this.image?.original,

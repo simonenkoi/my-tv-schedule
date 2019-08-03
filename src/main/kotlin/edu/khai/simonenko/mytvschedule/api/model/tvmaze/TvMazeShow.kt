@@ -7,5 +7,5 @@ data class TvMazeShow(
     val name: String? = null,
     val image: TvMazeImage? = null,
     @JsonProperty("_embedded")
-    val embedded: TvMazeEmbedded? = null
+    val embedded: TvMazeShowEmbedded? = null
 )

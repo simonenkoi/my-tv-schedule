@@ -14,10 +14,9 @@ data class ActorEntity(
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null,
     val externalId: Long,
-    val name: String? = null,
-    val image: String? = null,
+    var name: String? = null,
+    var image: String? = null,
+
     @ManyToMany(mappedBy = "cast")
     val shows: List<ShowEntity> = emptyList()
-) {
-    companion object
-}
+)

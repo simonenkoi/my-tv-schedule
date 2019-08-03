@@ -10,6 +10,9 @@ spring:
           batch_size: 10
         order_inserts: true
         generate_statistics: true
+        # TODO simonenkoi: adjust spring transactions to work with reactive code
+        enable_lazy_load_no_trans: true
+    open-in-view: false
 
 integration:
   tvmaze:

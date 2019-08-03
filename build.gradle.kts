@@ -36,6 +36,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+    testImplementation("org.apache.commons:commons-text:1.7")
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.19")
     testImplementation("io.projectreactor:reactor-test")
 }

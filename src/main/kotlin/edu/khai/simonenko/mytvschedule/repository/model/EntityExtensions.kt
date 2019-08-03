@@ -4,31 +4,55 @@ import edu.khai.simonenko.mytvschedule.api.model.Actor
 import edu.khai.simonenko.mytvschedule.api.model.Episode
 import edu.khai.simonenko.mytvschedule.api.model.Show
 
-fun ShowEntity.Companion.fromShow(show: Show): ShowEntity = ShowEntity(
-    externalId = show.id,
-    name = show.name,
-    image = show.image,
-    cast = ActorEntity.fromActors(show.cast),
-    episodes = EpisodeEntity.fromEpisodes(show.episodes)
-)
+fun ShowEntity.toShow(): Show {
+    return Show(
+        id = this.externalId,
+        name = this.name,
+        image = this.image
+    )
+}
 
-fun ActorEntity.Companion.fromActors(actors: Collection<Actor>?): MutableList<ActorEntity> =
-    actors?.map { fromActor(it) }.orEmpty().toMutableList()
+fun ShowEntity.toShowEager(fetchCast: Boolean = false, fetchEpisodes: Boolean = false): Show {
+    return this.toShow()
+        .also {
+            if (fetchCast) {
+                it.cast = this.cast.toActors()
+            }
+            if (fetchEpisodes) {
+                it.episodes = this.episodes.toEpisodes()
+            }
+        }
+}
 
-fun ActorEntity.Companion.fromActor(actor: Actor): ActorEntity = ActorEntity(
-    externalId = actor.id,
-    name = actor.name,
-    image = actor.image
-)
+fun Collection<ActorEntity>.toActors(): List<Actor> = this.map { it.toActor() }
 
-fun EpisodeEntity.Companion.fromEpisodes(episodes: Collection<Episode>?): MutableList<EpisodeEntity> =
-    episodes?.map { fromEpisode(it) }.orEmpty().toMutableList()
+fun ActorEntity.toActor(): Actor {
+    return Actor(
+        id = this.externalId,
+        name = this.name,
+        image = this.image
+    )
+}
 
-fun EpisodeEntity.Companion.fromEpisode(episode: Episode): EpisodeEntity = EpisodeEntity(
-    externalId = episode.id,
-    name = episode.name,
-    season = episode.season,
-    number = episode.number,
-    airdate = episode.airdate,
-    watched = episode.watched
-)
+fun Collection<EpisodeEntity>.toEpisodes(): List<Episode> = this.map { it.toEpisode() }
+
+fun EpisodeEntity.toEpisode(): Episode {
+    return Episode(
+        id = this.externalId,
+        name = this.name,
+        season = this.season,
+        number = this.number,
+        airdate = this.airdate,
+        watched = this.watched
+    )
+}
+
+fun EpisodeEntity.toEpisodeEager(fetchShow: Boolean = false): Episode {
+    return this.toEpisode()
+        .also {
+            if (fetchShow) {
+                it.show = this.show?.toShow()
+            }
+        }
+
+}

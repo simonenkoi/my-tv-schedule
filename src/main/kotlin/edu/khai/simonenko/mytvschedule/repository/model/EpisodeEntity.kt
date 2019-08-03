@@ -1,7 +1,6 @@
 package edu.khai.simonenko.mytvschedule.repository.model
 
 import java.time.LocalDate
-import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
@@ -17,13 +16,12 @@ data class EpisodeEntity(
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long? = null,
     val externalId: Long,
-    val name: String? = null,
-    val season: Int? = null,
-    val number: Int? = null,
-    val airdate: LocalDate? = null,
-    val watched: Boolean,
-    @ManyToOne(cascade = [CascadeType.PERSIST, CascadeType.MERGE], fetch = FetchType.LAZY)
+    var name: String? = null,
+    var season: Int? = null,
+    var number: Int? = null,
+    var airdate: LocalDate? = null,
+    var watched: Boolean = false,
+
+    @ManyToOne(fetch = FetchType.LAZY)
     val show: ShowEntity? = null
-) {
-    companion object
-}
+)

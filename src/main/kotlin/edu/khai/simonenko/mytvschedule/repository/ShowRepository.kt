@@ -6,4 +6,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ShowRepository : JpaRepository<ShowEntity, Long>, JpaSpecificationExecutor<ShowEntity>
+interface ShowRepository : JpaRepository<ShowEntity, Long>, JpaSpecificationExecutor<ShowEntity> {
+
+    fun findByExternalId(externalId: Long): ShowEntity?
+
+    fun deleteByExternalId(externalId: Long)
+}

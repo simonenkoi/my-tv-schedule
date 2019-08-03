@@ -2,7 +2,6 @@ package edu.khai.simonenko.mytvschedule.api.model.tvmaze
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDate
-import java.util.Date
 
 
 data class TvMazeEpisode(
